@@ -3,15 +3,15 @@ package baralho;
 import java.util.*;
 
 public class Baralho {
-    public int quant = 0;
-    public ArrayList<Carta> baralho;
+    private int quant = 0;
+    private ArrayList<Carta> baralho;
 
     public Baralho(){
         baralho = new ArrayList<>();
 
         // cria todas as cartas numericas, sem função especifica
         for(Valor v : Valor.values() ){ // cria 10x4 = 40 cartas;
-            if(!(v.equals(Valor.EXTRA)) && !(v.equals(Valor.VALETE)) && !(v.equals(Valor.DAMA)) && !(v.equals(Valor.REI))){
+            if(!(v.equals(Valor.EXTRA1)) && !(v.equals(Valor.EXTRA2)) && !(v.equals(Valor.VALETE)) && !(v.equals(Valor.DAMA)) && !(v.equals(Valor.REI))){
                 for(Grupo g : Grupo.values()){
                     if(!(g.equals(Grupo.PR)) && !(g.equals(Grupo.VE))){
                         baralho.add(new Carta(g, v, Funcao.NUMERICA));
@@ -45,8 +45,12 @@ public class Baralho {
         for(Grupo g : Grupo.values() ){ // cria 4 cartas;
             if((g.equals(Grupo.PR)) || (g.equals(Grupo.VE))){
                 for(Funcao f : Funcao.values() ){
-                    if((f.equals(Funcao.MAIS_QUATRO)) || (f.equals(Funcao.CURINGA))){
-                        baralho.add(new Carta(g, Valor.EXTRA, f));
+                    if(f.equals(Funcao.MAIS_QUATRO)){
+                        baralho.add(new Carta(g, Valor.EXTRA2, f));
+                        quant++;
+                    }
+                    else if(f.equals(Funcao.CURINGA)){
+                        baralho.add(new Carta(g, Valor.EXTRA1, f));
                         quant++;
                     }
                 }
@@ -60,5 +64,9 @@ public class Baralho {
 
     public int getQuant(){
         return quant;
+    }
+
+    public String formatarNomeCarta(Carta c){
+        return "";
     }
 }

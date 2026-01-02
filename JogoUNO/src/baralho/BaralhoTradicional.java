@@ -2,8 +2,8 @@ package baralho;
 
 import java.util.ArrayList;
 
-public class BaralhoOficial extends Baralho{
-    public BaralhoOficial(){ // construtor que depende da classe Baralho.java;
+public class BaralhoTradicional extends Baralho{
+    public BaralhoTradicional(){
         super();
     }
 
@@ -16,17 +16,18 @@ public class BaralhoOficial extends Baralho{
 
     public String getTipo(Carta c){
         return switch (c.getGrupo()) {
-            case CR -> "vermelho";
-            case OY -> "amarelo";
-            case PG -> "verde";
-            case EB -> "azul";
-            case PR, VE -> "preto";
+            case CR -> "copas";
+            case OY -> "ouros";
+            case PG -> "paus";
+            case EB -> "espadas";
+            case PR -> "preto";
+            case VE -> "vermelho";
         };
     }
 
     public String getValor(Carta c){
         return switch (c.getValor()) {
-            case AS -> "um";
+            case AS -> "as";
             case DOIS -> "dois";
             case TRES -> "tres";
             case QUATRO -> "quatro";
@@ -36,15 +37,14 @@ public class BaralhoOficial extends Baralho{
             case OITO -> "oito";
             case NOVE -> "nove";
             case DEZ -> "dez";
-            case VALETE -> "bloqueio";
-            case DAMA -> "reverso";
-            case REI -> "+2";
-            case EXTRA1 -> "curinga";
-            case EXTRA2 -> "+4";
+            case VALETE -> "valete";
+            case DAMA -> "dama";
+            case REI -> "rei";
+            case EXTRA1 -> "curingaPR";
+            case EXTRA2 -> "curingaVE";
         };
     }
 
-    /*
     public String getFuncao(Carta c){
         return switch (c.getFuncao()){
             case NUMERICA -> "numerica";
@@ -55,10 +55,8 @@ public class BaralhoOficial extends Baralho{
             case MAIS_QUATRO -> "+4";
         };
     }
-    */
 
-    @Override
     public String formatarNomeCarta(Carta c){
-        return getValor(c) + " " + getTipo(c);
+        return getValor(c) + " " + getTipo(c) + " " + getFuncao(c);
     }
 }

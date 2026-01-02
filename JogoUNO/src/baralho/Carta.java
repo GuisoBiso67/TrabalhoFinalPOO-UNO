@@ -9,4 +9,14 @@ public class Carta {
         this.grupo = g;
         this.funcao = f;
     }
+
+    public Grupo getGrupo(){
+        return grupo;
+    }
+    public Funcao getFuncao(){
+        return funcao;
+    }
+    public Valor getValor(){
+        return valor;
+    }
 }
