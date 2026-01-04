@@ -55,7 +55,9 @@ public class BaralhoTradicional extends Baralho{
             case MAIS_QUATRO -> "+4";
         };
     }
+    // valete, dama e rei tem sempre a msm função: ver se dá pra fazer algo com isso;
 
+    @Override
     public String formatarNomeCarta(Carta c){
         return getValor(c) + " " + getTipo(c) + " " + getFuncao(c);
     }

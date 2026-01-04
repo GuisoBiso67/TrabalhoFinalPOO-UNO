@@ -7,8 +7,10 @@ public class Baralho {
     private ArrayList<Carta> baralho;
 
     public Baralho(){
-        baralho = new ArrayList<>();
+        baralho = new ArrayList<Carta>();
+    }
 
+    public void criaBaralho(){
         // cria todas as cartas numericas, sem função especifica
         for(Valor v : Valor.values() ){ // cria 10x4 = 40 cartas;
             if(!(v.equals(Valor.EXTRA1)) && !(v.equals(Valor.EXTRA2)) && !(v.equals(Valor.VALETE)) && !(v.equals(Valor.DAMA)) && !(v.equals(Valor.REI))){
@@ -66,7 +68,19 @@ public class Baralho {
         return quant;
     }
 
+    public void diminuiQuantCartas(){
+        quant--;
+    }
+
     public String formatarNomeCarta(Carta c){
         return "";
+    }
+
+    public void embaralhaBaralho(){
+        Collections.shuffle(baralho);
+    }
+
+    public void addCarta(Carta c){
+        baralho.add(c);
     }
 }
