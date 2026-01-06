@@ -8,7 +8,7 @@ public class Jogador {
     private String nome;
     private Baralho baralhoJog;
 
-    public Jogador(String nome, Baralho baralho, int tipoBaralho) {
+    public Jogador(String nome, Baralho baralho, int tipoBaralho) { // Jogador já é criado distribuindo o baralho;
         this.nome = nome;
         if(tipoBaralho == 1){
             this.baralhoJog = new BaralhoOficial();

@@ -5,17 +5,17 @@ import regras.Controle;
 import java.util.*;
 
 class Main{
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Baralho baralho = null;
         ArrayList<Jogador> jogadores = new ArrayList<>();
         Controle controle = new Controle();
 
-        int numJogadores = -1;
-        while(numJogadores > 10 || numJogadores < 0){
+        int numJogadores;
+        do {
             System.out.println("Numero de Jogadores (2-10): ");
             numJogadores = scanner.nextInt();
-        }
+        } while (numJogadores > 10 || numJogadores < 2);
 
         System.out.println("Qual tipo de baralho você vai usar?");
         System.out.println("1 - Uno Oficial");
@@ -23,25 +23,25 @@ class Main{
         System.out.println("-> : ");
         int escolha = scanner.nextInt();
 
-        if(escolha == 1){
-            if(numJogadores >= 7){ // se o numero de jogadores for maior que 6, precisa de 2 baralhos;
+        if (escolha == 1) {
+            if (numJogadores >= 7) { // se o numero de jogadores for maior que 6, precisa de 2 baralhos;
                 baralho = new BaralhoOficial();
                 baralho.criaBaralho();
                 Baralho baralho2 = new BaralhoOficial();
                 baralho2.criaBaralho();
                 baralho.getCartas().addAll(baralho2.getCartas());
-            }else{
+            } else {
                 baralho = new BaralhoOficial();
                 baralho.criaBaralho();
             }
-        }else if (escolha == 2){
-            if(numJogadores >= 7){ // se o numero de jogadores for maior que 6, precisa de 2 baralhos;
+        } else if (escolha == 2) {
+            if (numJogadores >= 7) { // se o numero de jogadores for maior que 6, precisa de 2 baralhos;
                 baralho = new BaralhoTradicional();
                 baralho.criaBaralho();
                 Baralho baralho2 = new BaralhoTradicional();
                 baralho2.criaBaralho();
                 baralho.getCartas().addAll(baralho2.getCartas());
-            }else{
+            } else {
                 baralho = new BaralhoTradicional();
                 baralho.criaBaralho();
             }
@@ -52,7 +52,7 @@ class Main{
 
         controle.distribuirCartas(baralho, numJogadores, jogadores, escolha);
 
-        for(Jogador jogador : jogadores){
+        for (Jogador jogador : jogadores) {
             jogador.showCartas();
         }
 
@@ -60,7 +60,7 @@ class Main{
         System.out.println("------------------------------------------");
         System.out.println("------------------------------------------");
 
-        for(Carta c : baralho.getCartas()){
+        for (Carta c : baralho.getCartas()) {
             System.out.println(baralho.formatarNomeCarta(c));
         }
         System.out.println("Quantidade: " + baralho.getQuant());

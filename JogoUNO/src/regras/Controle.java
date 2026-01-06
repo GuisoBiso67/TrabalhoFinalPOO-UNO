@@ -6,7 +6,6 @@ import java.util.*;
 
 public class Controle {
     Scanner scanner = new Scanner(System.in);
-    //ArrayList<Jogador> jogadores = new ArrayList<>();
 
     public void distribuirCartas(Baralho b, int n, ArrayList<Jogador> jogadores, int tipoBaralho){ // n = numero de jogadores;
         for(int i = 0; i < n; i++){
@@ -14,5 +13,15 @@ public class Controle {
             String nome = scanner.next();
             jogadores.add(new Jogador(nome, b, tipoBaralho));
         }
+    }
+
+    public void criaMonteCompra(Baralho _monteCompra){
+        Compra monteCompra = new Compra();
+        monteCompra.recebeCartas(_monteCompra);
+    }
+
+    public void iniciaMonteDescarte(Carta cartaInicial){
+        Descarte monteDescarte = new Descarte();
+        monteDescarte.recebeCarta1(cartaInicial);
     }
 }
