@@ -68,6 +68,10 @@ public class Baralho {
         return quant;
     }
 
+    public void aumentaQuantCartas(){
+        quant++;
+    }
+
     public void diminuiQuantCartas(){
         quant--;
     }
@@ -82,5 +86,9 @@ public class Baralho {
 
     public void addCarta(Carta c){
         baralho.add(c);
+    }
+
+    public void addCartaNoInicio(Carta c){
+        baralho.addFirst(c);
     }
 }

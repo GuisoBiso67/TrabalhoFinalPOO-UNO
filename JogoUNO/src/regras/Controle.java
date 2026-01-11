@@ -5,7 +5,9 @@ import baralho.*;
 import java.util.*;
 
 public class Controle {
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
+    private Compra monteCompra = new Compra();
+    private Descarte monteDescarte = new Descarte();
 
     public void distribuirCartas(Baralho b, int n, ArrayList<Jogador> jogadores, int tipoBaralho){ // n = numero de jogadores;
         for(int i = 0; i < n; i++){
@@ -16,12 +18,19 @@ public class Controle {
     }
 
     public void criaMonteCompra(Baralho _monteCompra){
-        Compra monteCompra = new Compra();
-        monteCompra.recebeCartas(_monteCompra);
+        this.monteCompra.recebeCartas(_monteCompra);
     }
 
     public void iniciaMonteDescarte(Carta cartaInicial){
-        Descarte monteDescarte = new Descarte();
-        monteDescarte.recebeCarta1(cartaInicial);
+        this.monteDescarte.recebeCarta1(cartaInicial);
+    }
+
+    public Carta compraCartaSeguro(){ // mudar esse nome dps
+        if(monteCompra.getQuant() == 0){
+            List<Object> resultado = monteDescarte.reembaralhar();
+            monteCompra = (Compra) resultado.get(0);
+            monteDescarte = (Descarte) resultado.get(1);
+        }
+        return monteCompra.compraCarta();
     }
 }

@@ -13,12 +13,19 @@ public class Compra extends Controle {
     public void recebeCartas(Baralho monteCompra){
         for(Carta c : monteCompra.getCartas()){
             monteCompra.addCarta(c);
+            monteCompra.aumentaQuantCartas();
         }
     }
 
-    public void compraCarta(){
-        if(monteCompra == null){ // se o monte de compras acaba, tem q reembaralhar o descarte;
+    public Carta compraCarta(){
+        Carta cartaComprada = monteCompra.getCartas().getFirst();
+        monteCompra.getCartas().removeFirst();
+        monteCompra.diminuiQuantCartas(); // subtrai quantidade
+        return cartaComprada;
+    }
 
-        }
+    // metodos auxiliares repetidos;
+    public int getQuant(){
+        return monteCompra.getQuant();
     }
 }

@@ -11,15 +11,21 @@ public class Descarte extends Controle {
         this.monteDescarte = new Baralho();
     }
 
-    public void recebeCarta1(Carta cartaInicial){
-        monteDescarte.addCarta(cartaInicial);
+    public void recebeCarta1(Carta cartaInicial){ // aumenta monte de descarte
+        monteDescarte.addCartaNoInicio(cartaInicial); // adiciona sempre a carta no topo;
+        monteDescarte.aumentaQuantCartas();
     }
 
-    public void jogarCarta(Jogador jogador, Carta cartaJogada){ // aumenta monte de descarte
+    public List<Object> reembaralhar(){
+        Carta cartaTopo = monteDescarte.getCartas().getFirst(); // salva ultima carta que foi jogada;
 
-    }
+        monteDescarte.getCartas().removeFirst();
+        monteDescarte.embaralhaBaralho();
 
-    public void reembaralhar(Baralho monteCompraAnterior){
+        Baralho novoMonteDescarte = new Baralho(); // cria novo descarte
+        novoMonteDescarte.addCartaNoInicio(cartaTopo);
+        novoMonteDescarte.aumentaQuantCartas();
 
+        return List.of(monteDescarte, novoMonteDescarte); // preciso retornar os dois valores, entao uso um List.of (verificar pq é static)
     }
 }
