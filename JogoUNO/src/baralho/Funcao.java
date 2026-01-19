@@ -6,7 +6,12 @@ public enum Funcao {
 
     },
     REVERSO{
-
+        //@Override
+        boolean reversoAtivado = false;
+        public boolean reverso() {
+            reversoAtivado = !reversoAtivado; // inverte estado sempre que jogador;
+            return reversoAtivado;
+        }
     },
     MAIS_DOIS{
 

@@ -48,12 +48,17 @@ class Main{
         }
         System.out.println("Baralho gerado com sucesso");
 
-        baralho.embaralhaBaralho();
 
+        // INICIA JOGO;
+        baralho.embaralhaBaralho();
         controle.distribuirCartas(baralho, numJogadores, jogadores, escolha);
+        //controle.criaMonteCompra(baralho); tentar entender pq isso acontece, acho q estou criando dois comtaCompra sem querer
+        controle.iniciaMonteDescarte(baralho.getCartas().getFirst());
+        // ---------------------------
 
         for (Jogador jogador : jogadores) {
             jogador.showCartas();
+            System.out.println("Quantidade de Cartas: " + jogador.getQuant());
         }
 
         System.out.println("------------------------------------------");
@@ -64,6 +69,26 @@ class Main{
             System.out.println(baralho.formatarNomeCarta(c));
         }
         System.out.println("Quantidade: " + baralho.getQuant());
+
+        do {
+            for (Jogador jogador : jogadores) {
+                if (controle.jogadorGanhou(jogadores)) {
+                    break;
+                }
+                System.out.println("Vez de: " + jogador.getNome());
+                System.out.println("Escolha um carta: ");
+                int i = 0;
+                for (Carta c : jogador.getBaralho().getCartas()) {
+                    System.out.println(i + " - " + baralho.formatarNomeCarta(c));
+                    i++;
+                }
+                int op = scanner.nextInt();
+                jogador.jogarCarta(jogador.getBaralho().getCartas().get(op));
+            }
+        }while(!controle.jogadorGanhou(jogadores));
+
+        Jogador vencedor = controle.jogadorGanhouNome(jogadores);
+        System.out.println("Vencedor: " + vencedor.getNome());
 
         /*
         for(Carta c : baralho.getCartas()){

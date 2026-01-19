@@ -25,12 +25,32 @@ public class Controle {
         this.monteDescarte.recebeCarta1(cartaInicial);
     }
 
-    public Carta compraCartaSeguro(){ // mudar esse nome dps
+    public Carta compraCartaSeguro(){ // mudar esse nome dps, testar se funciona;
         if(monteCompra.getQuant() == 0){
             List<Object> resultado = monteDescarte.reembaralhar();
             monteCompra = (Compra) resultado.get(0);
+            monteCompra.setQuant(monteCompra.getQuant());
             monteDescarte = (Descarte) resultado.get(1);
+            monteDescarte.setQuant(monteDescarte.getQuant());
         }
         return monteCompra.compraCarta();
+    }
+
+    public boolean jogadorGanhou(ArrayList<Jogador> jogadores){
+        for(Jogador jogador : jogadores){
+            if(jogador.getQuant() == 0){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Jogador jogadorGanhouNome(ArrayList<Jogador> jogadores){ // so chama se a de cima for true;
+        for(Jogador jogador : jogadores){
+            if(jogador.getQuant() == 0){
+                return jogador;
+            }
+        }
+        return null;
     }
 }

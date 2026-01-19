@@ -1,10 +1,10 @@
 package regras;
 
 import baralho.*;
-import entities.*;
+
 import java.util.*;
 
-public class Descarte extends Controle {
+public class Descarte /*extends Controle*/ {
     private Baralho monteDescarte;
 
     public Descarte(){
@@ -27,5 +27,13 @@ public class Descarte extends Controle {
         novoMonteDescarte.aumentaQuantCartas();
 
         return List.of(monteDescarte, novoMonteDescarte); // preciso retornar os dois valores, entao uso um List.of (verificar pq é static)
+    }
+
+    public int getQuant(){
+        return monteDescarte.getQuant();
+    }
+
+    public void setQuant(int quant){
+        monteDescarte.setQuant(quant);
     }
 }

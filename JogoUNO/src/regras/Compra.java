@@ -3,7 +3,7 @@ package regras;
 import baralho.*;
 import java.util.*;
 
-public class Compra extends Controle {
+public class Compra /*extends Controle*/ {
     private Baralho monteCompra;
 
     public Compra(){
@@ -27,5 +27,9 @@ public class Compra extends Controle {
     // metodos auxiliares repetidos;
     public int getQuant(){
         return monteCompra.getQuant();
+    }
+
+    public void setQuant(int quant){
+        monteCompra.setQuant(quant);
     }
 }

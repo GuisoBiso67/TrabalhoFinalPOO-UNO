@@ -68,6 +68,10 @@ public class Baralho {
         return quant;
     }
 
+    public void setQuant(int quant){
+        this.quant = quant;
+    }
+
     public void aumentaQuantCartas(){
         quant++;
     }
