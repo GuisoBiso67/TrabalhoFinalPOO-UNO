@@ -6,8 +6,21 @@ import java.util.*;
 
 public class Controle {
     private Scanner scanner = new Scanner(System.in);
-    private Compra monteCompra = new Compra();
-    private Descarte monteDescarte = new Descarte();
+    private Baralho baralho;
+    private Compra monteCompra;
+    private Descarte monteDescarte;
+
+    public Controle(int op){
+        if(op==1){
+            baralho = new BaralhoOficial();
+            monteCompra = new Compra(baralho);
+            monteDescarte = new Descarte(baralho);
+        }else {
+            baralho = new BaralhoTradicional();
+            monteCompra = new Compra(baralho);
+            monteDescarte = new Descarte(baralho);
+        }
+    }
 
     public void distribuirCartas(Baralho b, int n, ArrayList<Jogador> jogadores, int tipoBaralho){ // n = numero de jogadores;
         for(int i = 0; i < n; i++){
@@ -15,6 +28,16 @@ public class Controle {
             String nome = scanner.next();
             jogadores.add(new Jogador(nome, b, tipoBaralho));
         }
+        this.monteCompra.recebeCartas(b);
+        this.monteDescarte.recebeCarta1(this.monteCompra.getCartas().getFirst());
+        monteCompra.getCartas().removeFirst();
+    }
+
+    public Compra acessaMonteCompra(){
+        return monteCompra;
+    }
+    public Descarte acessaMonteDescarte(){
+        return monteDescarte;
     }
 
     public void criaMonteCompra(Baralho _monteCompra){

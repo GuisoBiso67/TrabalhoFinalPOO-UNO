@@ -65,7 +65,7 @@ public class Baralho {
     }
 
     public int getQuant(){
-        return quant;
+        return baralho.size();
     }
 
     public void setQuant(int quant){
@@ -81,7 +81,7 @@ public class Baralho {
     }
 
     public String formatarNomeCarta(Carta c){
-        return "";
+        return "abuble";
     }
 
     public void embaralhaBaralho(){

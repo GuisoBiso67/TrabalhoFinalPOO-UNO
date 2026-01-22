@@ -34,9 +34,6 @@ public class Jogador {
     }
 
 
-
-
-
     // funções basicas
     public String getNome() {
         return nome.toUpperCase();

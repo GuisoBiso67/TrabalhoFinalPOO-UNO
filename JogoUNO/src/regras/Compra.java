@@ -3,33 +3,23 @@ package regras;
 import baralho.*;
 import java.util.*;
 
-public class Compra /*extends Controle*/ {
-    private Baralho monteCompra;
+public class Compra extends Monte {
 
-    public Compra(){
-        this.monteCompra = new Baralho();
+    public Compra(Baralho baralho) {
+        super(baralho);
     }
 
-    public void recebeCartas(Baralho monteCompra){
-        for(Carta c : monteCompra.getCartas()){
-            monteCompra.addCarta(c);
-            monteCompra.aumentaQuantCartas();
+    public void recebeCartas(Baralho baralho){
+        for(Carta c : baralho.getCartas()){
+            this.addCarta(c);
+            this.aumentaQuantCartas();
         }
     }
 
     public Carta compraCarta(){
-        Carta cartaComprada = monteCompra.getCartas().getFirst();
-        monteCompra.getCartas().removeFirst();
-        monteCompra.diminuiQuantCartas(); // subtrai quantidade
+        Carta cartaComprada = this.getCartas().getFirst();
+        this.getCartas().removeFirst();
+        this.diminuiQuantCartas(); // subtrai quantidade
         return cartaComprada;
-    }
-
-    // metodos auxiliares repetidos;
-    public int getQuant(){
-        return monteCompra.getQuant();
-    }
-
-    public void setQuant(int quant){
-        monteCompra.setQuant(quant);
     }
 }

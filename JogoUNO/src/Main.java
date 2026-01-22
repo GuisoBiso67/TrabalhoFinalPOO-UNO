@@ -1,6 +1,6 @@
 import baralho.*;
 import entities.*;
-import regras.Controle;
+import regras.*;
 
 import java.util.*;
 
@@ -9,7 +9,7 @@ class Main{
         Scanner scanner = new Scanner(System.in);
         Baralho baralho = null;
         ArrayList<Jogador> jogadores = new ArrayList<>();
-        Controle controle = new Controle();
+        Controle controle;
 
         int numJogadores;
         do {
@@ -34,6 +34,7 @@ class Main{
                 baralho = new BaralhoOficial();
                 baralho.criaBaralho();
             }
+            // --------------------------------------
         } else if (escolha == 2) {
             if (numJogadores >= 7) { // se o numero de jogadores for maior que 6, precisa de 2 baralhos;
                 baralho = new BaralhoTradicional();
@@ -46,14 +47,16 @@ class Main{
                 baralho.criaBaralho();
             }
         }
+        controle = new Controle(escolha);
         System.out.println("Baralho gerado com sucesso");
 
 
         // INICIA JOGO;
         baralho.embaralhaBaralho();
         controle.distribuirCartas(baralho, numJogadores, jogadores, escolha);
-        //controle.criaMonteCompra(baralho); tentar entender pq isso acontece, acho q estou criando dois comtaCompra sem querer
-        controle.iniciaMonteDescarte(baralho.getCartas().getFirst());
+        //controle.criaMonteCompra(baralho);
+        //controle.iniciaMonteDescarte(baralho.getCartas().getFirst());
+
         // ---------------------------
 
         for (Jogador jogador : jogadores) {
@@ -69,6 +72,31 @@ class Main{
             System.out.println(baralho.formatarNomeCarta(c));
         }
         System.out.println("Quantidade: " + baralho.getQuant());
+
+        System.out.println("------------------------------------------");
+        System.out.println("-------------bjinmuytvygbhnjuyy-----------");
+        System.out.println("------------------------------------------");
+
+        Compra monteCompra = controle.acessaMonteCompra();
+        Descarte monteDescarte = controle.acessaMonteDescarte();
+
+        System.out.println("MONTE DE COMPRAS: ");
+        for (Carta c : monteCompra.getCartas()) {
+            System.out.println(monteCompra.formatarNomeCarta(c));
+        }
+        System.out.println("QUANTIDADE MONTE DE COMPRAS: " + monteCompra.getQuant());
+
+        System.out.println("------------------------------------------");
+
+        System.out.println("MONTE DE DESCARTE: ");
+        for (Carta c : monteDescarte.getCartas()) {
+            System.out.println(monteDescarte.formatarNomeCarta(c));
+        }
+        System.out.println("QUANTIDADE MONTE DE DESCARTE: " + monteDescarte.getQuant());
+
+        System.out.println("------------------------------------------");
+        System.out.println("------------------------------------------");
+        System.out.println("------------------------------------------");
 
         do {
             for (Jogador jogador : jogadores) {
