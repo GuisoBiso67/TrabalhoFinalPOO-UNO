@@ -39,8 +39,9 @@ public class Monte {
         quant--;
     }
 
+    // melhorar isso depois;
     public String formatarNomeCarta(Carta c){
-        return "NAO IMPLEMENTADO";
+        return c.getValor().toString() + " " + c.getGrupo().toString() + " " +  c.getFuncao().toString();
     }
 
     public void embaralhaBaralho(){
