@@ -15,16 +15,21 @@ public class Descarte extends Monte {
         this.aumentaQuantCartas();
     }
 
-    public List<Object> reembaralhar(){
+    public Descarte reembaralhar(Compra monteCompra){
         Carta cartaTopo = this.getCartas().getFirst(); // salva ultima carta que foi jogada;
+        //monteCompra.getCartas().add(cartaTopo);
 
         this.getCartas().removeFirst();
-        this.embaralhaBaralho();
+        this.embaralhaBaralho(); // descarte foi embaralhado
 
-        Baralho novoMonteDescarte = new Baralho(); // cria novo descarte
-        novoMonteDescarte.addCartaNoInicio(cartaTopo);
-        novoMonteDescarte.aumentaQuantCartas();
+        for(Carta carta : this.getCartas()){
+            monteCompra.getCartas().add(carta); // constroi monte de compra
+            monteCompra.aumentaQuantCartas();
+        }
+        this.getCartas().clear(); // limpa arrayList do descarte
+        this.addCartaNoInicio(cartaTopo); // adiciona a ultima carta jogada
+        this.setQuant(1); // descarte tem só 1 carta;
 
-        return List.of(this, novoMonteDescarte); // preciso retornar os dois valores, entao uso um List.of (verificar pq é static)
+        return this;
     }
 }

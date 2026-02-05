@@ -57,6 +57,7 @@ public class BaralhoTradicional extends Baralho{
     }
     // valete, dama e rei tem sempre a msm função: ver se dá pra fazer algo com isso;
 
+
     @Override
     public String formatarNomeCarta(Carta c){
         return getValor(c) + " " + getTipo(c) + " " + getFuncao(c);

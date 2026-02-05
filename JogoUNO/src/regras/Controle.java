@@ -50,11 +50,7 @@ public class Controle {
 
     public Carta compraCartaSeguro(){ // mudar esse nome dps, testar se funciona;
         if(monteCompra.getQuant() == 0){
-            List<Object> resultado = monteDescarte.reembaralhar();
-            monteCompra = (Compra) resultado.get(0);
-            monteCompra.setQuant(monteCompra.getQuant());
-            monteDescarte = (Descarte) resultado.get(1);
-            monteDescarte.setQuant(monteDescarte.getQuant());
+            monteDescarte.reembaralhar(monteCompra);
         }
         return monteCompra.compraCarta();
     }

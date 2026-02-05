@@ -4,18 +4,17 @@ import baralho.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
+//import java.util.LinkedList;
 
 public class Monte {
     private int quant;
     private ArrayList<Carta> monte;
 
-    protected LinkedList<Carta> cartas = new LinkedList<>();
-    protected Baralho baralho;
+    //protected LinkedList<Carta> cartas = new LinkedList<>();
+    //protected Baralho baralho;
 
     public Monte(Baralho baralho){
         monte = new ArrayList<Carta>();
-        this.baralho = baralho;
     }
 
     // ------------------------------------------------------------
@@ -41,7 +40,7 @@ public class Monte {
     }
 
     public String formatarNomeCarta(Carta c){
-        return baralho.formatarNomeCarta(c);
+        return "NAO IMPLEMENTADO";
     }
 
     public void embaralhaBaralho(){

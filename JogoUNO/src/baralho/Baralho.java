@@ -2,7 +2,8 @@ package baralho;
 
 import java.util.*;
 
-public class Baralho {
+// declarar Baralho como abstrato para usar o formatarCarta corretamente;
+public abstract class Baralho {
     private int quant = 0;
     private ArrayList<Carta> baralho;
 
@@ -81,7 +82,7 @@ public class Baralho {
     }
 
     public String formatarNomeCarta(Carta c){
-        return "abuble";
+        return "";
     }
 
     public void embaralhaBaralho(){

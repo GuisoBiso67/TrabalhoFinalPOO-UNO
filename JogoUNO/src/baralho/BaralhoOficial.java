@@ -57,6 +57,7 @@ public class BaralhoOficial extends Baralho{
     }
     */
 
+
     @Override
     public String formatarNomeCarta(Carta c){
         return getValor(c) + " " + getTipo(c);
