@@ -56,11 +56,16 @@ public class Controle {
         this.monteDescarte.recebeCarta1(cartaInicial);
     }
 
-    public Carta compraCartaSeguro(){ // mudar esse nome dps, testar se funciona;
+    public void compraCartaSeguro(Jogador j){ // mudar esse nome dps, testar se funciona;
         if(monteCompra.getQuant() == 0){
             monteDescarte.reembaralhar(monteCompra);
         }
-        return monteCompra.compraCarta();
+        j.getBaralho().getCartas().addFirst(monteCompra.compraCarta());
+    }
+
+    public void jogarCarta(Jogador j, Carta c){
+        j.jogarCarta(c);
+        monteDescarte.addCartaNoInicio(c);
     }
 
     public boolean jogadorGanhou(ArrayList<Jogador> jogadores){

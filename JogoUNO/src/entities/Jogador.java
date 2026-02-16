@@ -33,7 +33,6 @@ public class Jogador {
         System.out.println("Carta jogada = " + baralhoJog.formatarNomeCarta(c));
     }
 
-
     // funções basicas
     public String getNome() {
         return nome.toUpperCase();

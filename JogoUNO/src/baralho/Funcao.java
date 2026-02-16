@@ -23,5 +23,5 @@ public enum Funcao {
     },
     MAIS_QUATRO{ // *tem a msm função do curinga
 
-    }, f,
+    }
 }

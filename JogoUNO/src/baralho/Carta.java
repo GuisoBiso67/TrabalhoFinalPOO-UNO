@@ -1,5 +1,7 @@
 package baralho;
 
+import regras.*;
+
 public class Carta {
     public Valor valor;
     public Grupo grupo;
@@ -22,8 +24,8 @@ public class Carta {
     }
 
     /*
-    public void aplicarEfeito(Funcao f){
-        this.funcao.f =
+    public void aplicarEfeito(Controle controle){
+        this.getFuncao().f = ;
     }
     */
 }

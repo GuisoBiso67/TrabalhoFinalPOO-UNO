@@ -13,6 +13,10 @@ public class Descarte extends Monte {
         this.aumentaQuantCartas();
     }
 
+    public Carta getFirstCarta(){
+        return this.getCartas().getFirst();
+    }
+
     public Descarte reembaralhar(Compra monteCompra){
         Carta cartaTopo = this.getCartas().getFirst(); // salva ultima carta que foi jogada;
         //monteCompra.getCartas().add(cartaTopo);

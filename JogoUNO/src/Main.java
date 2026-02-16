@@ -65,14 +65,17 @@ class Main{
         System.out.println("------------------------------------------");
         System.out.println("------------------------------------------");
 
+        /*
         for (Carta c : baralho.getCartas()) {
             System.out.println(baralho.formatarNomeCarta(c));
         }
         System.out.println("Quantidade: " + baralho.getQuant());
 
+
         System.out.println("------------------------------------------");
         System.out.println("-------------bjinmuytvygbhnjuyy-----------");
         System.out.println("------------------------------------------");
+        */
 
         Compra monteCompra = controle.acessaMonteCompra();
         Descarte monteDescarte = controle.acessaMonteDescarte();
@@ -95,20 +98,31 @@ class Main{
         System.out.println("------------------------------------------");
         System.out.println("------------------------------------------");
 
+        System.out.println("Ultima carta jogada: " + monteDescarte.formatarNomeCarta(monteDescarte.getFirstCarta()));
+
         do {
             for (Jogador jogador : jogadores) {
                 if (controle.jogadorGanhou(jogadores)) {
                     break;
                 }
                 System.out.println("Vez de: " + jogador.getNome());
-                System.out.println("Escolha um carta: ");
+                System.out.println("Escolha uma carta: ");
                 int i = 0;
                 for (Carta c : jogador.getBaralho().getCartas()) {
                     System.out.println(i + " - " + baralho.formatarNomeCarta(c));
                     i++;
                 }
+                System.out.println(i + " - Comprar carta");
                 int op = scanner.nextInt();
-                jogador.jogarCarta(jogador.getBaralho().getCartas().get(op));
+                if(op == i){
+                    controle.compraCartaSeguro(jogador);
+                }else{
+                    controle.jogarCarta(jogador, jogador.getBaralho().getCartas().get(op));
+                }
+                System.out.println("------------------------------------------");
+
+                System.out.println("QUANTIDADE MONTE DE COMPRAS: " + monteCompra.getQuant());
+                System.out.println("Ultima carta jogada: " + monteDescarte.formatarNomeCarta(monteDescarte.getFirstCarta()));
             }
         }while(!controle.jogadorGanhou(jogadores));
 
