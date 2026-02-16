@@ -2,6 +2,8 @@ package entities;
 
 import baralho.*;
 
+import java.lang.reflect.Array;
+
 public class Jogador {
     private String nome;
     private Baralho baralhoJog;

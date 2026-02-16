@@ -10,17 +10,19 @@ public class Controle {
     private Compra monteCompra;
     private Descarte monteDescarte;
     private Validacao validacao = new Validacao();
+    ArrayList<Jogador> jogadores;
+    private int tipoBaralho;
+    private int indiceAtual;
+    private int direcao; // 1 = horario, -1 = anti-horario;
 
     public Controle(int op){
-        if(op==1){
-            baralho = new BaralhoOficial();
-            monteCompra = new Compra();
-            monteDescarte = new Descarte();
-        }else {
-            baralho = new BaralhoTradicional();
-            monteCompra = new Compra();
-            monteDescarte = new Descarte();
-        }
+        if (op==1) baralho = new BaralhoOficial();
+        else baralho = new BaralhoTradicional();
+        jogadores = new ArrayList<>();
+        monteCompra = new Compra();
+        monteDescarte = new Descarte();
+        indiceAtual = 0;
+        direcao = 1;
     }
 
     public void distribuirCartas(Baralho b, int n, ArrayList<Jogador> jogadores, int tipoBaralho){ // n = numero de jogadores;
@@ -32,9 +34,10 @@ public class Controle {
         this.monteCompra.recebeCartas(b);
 
         getCarta1();
+        indiceAtual = 0;
     }
 
-    public void getCarta1(){ // garante que a primeira carta no jogo seja diferente de curing ou +4;
+    public void getCarta1(){ // garante que a primeira carta no jogo seja diferente de curinga ou +4;
         Carta carta1MonteCompra;
         do{
             carta1MonteCompra= this.monteCompra.getCartas().getFirst();
@@ -62,15 +65,45 @@ public class Controle {
             monteDescarte.reembaralhar(monteCompra);
         }
         j.getBaralho().getCartas().addFirst(monteCompra.compraCarta());
+        this.updateIndice();
     }
 
     public void jogarCarta(Jogador j, Carta c, Carta cartaAnterior){
         j.jogarCarta(c);
+        c.aplicarEfeito(this);
         monteDescarte.addCartaNoInicio(c);
     }
 
-    public boolean validarCarta(Carta c, Carta cAnterior){
-        return validacao.validarCarta(c,cAnterior);
+    public boolean validarCarta(Carta c, Carta cAnterior, Grupo g){
+        return validacao.validarCarta(c,cAnterior, g);
+    }
+
+    public Grupo escolherCor(int tipoBaralho){
+        this.tipoBaralho = tipoBaralho; // função aplicada após curinga ou +4;
+        int op = 0;
+        do{
+            System.out.println("Escolha cor/naipe para continuar a partida: ");
+            if(tipoBaralho == 1){
+                System.out.println("1- Vermelho");
+                System.out.println("2- Amarelo");
+                System.out.println("3- Verde");
+                System.out.println("4- Azul");
+            }else{
+                System.out.println("1- Copas");
+                System.out.println("2- Ouros");
+                System.out.println("3- Paus");
+                System.out.println("4- Espadas");
+            }
+            op = scanner.nextInt();
+        }while(op<1 || op>4);
+        
+        return switch (op) {
+            case 1 -> Grupo.CR;
+            case 2 -> Grupo.OY;
+            case 3 -> Grupo.PG;
+            case 4 -> Grupo.EB;
+            default -> null;
+        };
     }
 
     public boolean jogadorGanhou(ArrayList<Jogador> jogadores){
@@ -89,5 +122,42 @@ public class Controle {
             }
         }
         return null;
+    }
+
+    public int getIndice(){
+        return indiceAtual;
+    }
+    public void setIndice(int novoIndice){
+        this.indiceAtual = novoIndice;
+    }
+    public void updateIndice(){
+        if (indiceAtual == jogadores.size()-1) setIndice(0);
+        else indiceAtual++;
+    }
+
+    public ArrayList<Jogador> getJogadores(){
+        return jogadores;
+    }
+
+    /*
+    public void pularProximoJogador(){ // mecanica para aplicar os efeitos de bloqueio e de penalidade (+2 e +4);
+        int atual = this.getIndice();
+        int tamanho = this.getJogadores().size();
+        int proximo = (atual + 2) % tamanho; // garante que vai cair sempre em um jogador existente;
+        this.setIndice(proximo);
+    }
+    */
+
+    // mecanica para o reverso;
+    public int getDirecao(){
+        return direcao;
+    }
+    public void inverteDirecao(){
+        this.direcao *= (-1);
+    }
+
+    public void avancarTurno(int passos){
+        int tamanho = jogadores.size();
+        indiceAtual = (indiceAtual + direcao * passos + tamanho) % tamanho;
     }
 }

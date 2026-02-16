@@ -23,9 +23,9 @@ public class Carta {
         return valor;
     }
 
-    /*
+
     public void aplicarEfeito(Controle controle){
-        this.getFuncao().f = ;
+        this.getFuncao().executar(controle, this);
     }
-    */
+
 }
