@@ -13,7 +13,7 @@ public class Monte {
     //protected LinkedList<Carta> cartas = new LinkedList<>();
     //protected Baralho baralho;
 
-    public Monte(Baralho baralho){
+    public Monte(){
         monte = new ArrayList<Carta>();
     }
 

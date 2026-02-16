@@ -2,12 +2,10 @@ package regras;
 
 import baralho.*;
 
-import java.util.*;
-
 public class Descarte extends Monte {
 
-    public Descarte(Baralho baralho) {
-        super(baralho);
+    public Descarte() {
+        super();
     }
 
     public void recebeCarta1(Carta cartaInicial){

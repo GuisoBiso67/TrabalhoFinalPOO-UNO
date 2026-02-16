@@ -13,12 +13,12 @@ public class Controle {
     public Controle(int op){
         if(op==1){
             baralho = new BaralhoOficial();
-            monteCompra = new Compra(baralho);
-            monteDescarte = new Descarte(baralho);
+            monteCompra = new Compra();
+            monteDescarte = new Descarte();
         }else {
             baralho = new BaralhoTradicional();
-            monteCompra = new Compra(baralho);
-            monteDescarte = new Descarte(baralho);
+            monteCompra = new Compra();
+            monteDescarte = new Descarte();
         }
     }
 
@@ -29,12 +29,20 @@ public class Controle {
             jogadores.add(new Jogador(nome, b, tipoBaralho));
         }
         this.monteCompra.recebeCartas(b);
-        this.monteDescarte.recebeCarta1(this.monteCompra.getCartas().getFirst());
-        monteCompra.getCartas().removeFirst();
+
+        getCarta1();
     }
 
-    public Compra acessaMonteCompra(){
-        return monteCompra;
+    public void getCarta1(){ // garante que a primeira carta no jogo seja diferente de curing ou +4;
+        Carta carta1MonteCompra;
+        do{
+            carta1MonteCompra= this.monteCompra.getCartas().getFirst();
+            this.monteDescarte.recebeCarta1(carta1MonteCompra);
+            monteCompra.getCartas().removeFirst();
+        }while(carta1MonteCompra.getGrupo().equals(Grupo.PR) || carta1MonteCompra.getGrupo().equals(Grupo.VE));
+    }
+
+    public Compra acessaMonteCompra(){ return monteCompra;
     }
     public Descarte acessaMonteDescarte(){
         return monteDescarte;

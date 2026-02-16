@@ -14,12 +14,14 @@ public enum Funcao {
         }
     },
     MAIS_DOIS{
+        public void maisDois() {
 
+        }
     },
     CURINGA{
 
     },
     MAIS_QUATRO{ // *tem a msm função do curinga
 
-    },
+    }, f,
 }

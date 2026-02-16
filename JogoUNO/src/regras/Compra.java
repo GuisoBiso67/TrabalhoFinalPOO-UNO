@@ -1,12 +1,11 @@
 package regras;
 
 import baralho.*;
-import java.util.*;
 
 public class Compra extends Monte {
 
-    public Compra(Baralho baralho) {
-        super(baralho);
+    public Compra() {
+        super();
     }
 
     public void recebeCartas(Baralho baralho){

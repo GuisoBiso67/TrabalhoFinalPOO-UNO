@@ -20,4 +20,10 @@ public class Carta {
     public Valor getValor(){
         return valor;
     }
+
+    /*
+    public void aplicarEfeito(Funcao f){
+        this.funcao.f =
+    }
+    */
 }
