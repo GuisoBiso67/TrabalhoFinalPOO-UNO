@@ -117,7 +117,11 @@ class Main{
                 if(op == i){
                     controle.compraCartaSeguro(jogador);
                 }else{
-                    controle.jogarCarta(jogador, jogador.getBaralho().getCartas().get(op));
+                    while(!controle.validarCarta(jogador.getBaralho().getCartas().get(op), monteDescarte.getFirstCarta())){
+                        System.out.println("Carta invalida! Escolha outra: ");
+                        op = scanner.nextInt();
+                    }
+                    controle.jogarCarta(jogador, jogador.getBaralho().getCartas().get(op), monteDescarte.getFirstCarta());
                 }
                 System.out.println("------------------------------------------");
 
@@ -128,23 +132,5 @@ class Main{
 
         Jogador vencedor = controle.jogadorGanhouNome(jogadores);
         System.out.println("Vencedor: " + vencedor.getNome());
-
-        /*
-        for(Carta c : baralho.getCartas()){
-            System.out.println(baralho.formatarNomeCarta(c));
-        }
-        System.out.println("Quantidade: " + baralho.getQuant());
-
-        System.out.println("------------------------------------------");
-        System.out.println("------------------------------------------");
-        System.out.println("------------------------------------------");
-
-        baralho.embaralhaBaralho();
-
-        for(Carta c : baralho.getCartas()){
-            System.out.println(baralho.formatarNomeCarta(c));
-        }
-        System.out.println("Quantidade: " + baralho.getQuant());
-        */
     }
 }

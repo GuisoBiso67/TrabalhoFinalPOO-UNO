@@ -1,7 +1,13 @@
 package baralho;
 
+import regras.Controle;
+
 public enum Funcao {
-    NUMERICA, // para cartas simples;
+    NUMERICA{
+        public void executar(Controle controle, Carta carta){
+
+        }
+    }, // para cartas simples;
     BLOQUEIO{
 
     },

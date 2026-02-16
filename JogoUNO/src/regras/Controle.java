@@ -9,6 +9,7 @@ public class Controle {
     private Baralho baralho;
     private Compra monteCompra;
     private Descarte monteDescarte;
+    private Validacao validacao = new Validacao();
 
     public Controle(int op){
         if(op==1){
@@ -63,9 +64,13 @@ public class Controle {
         j.getBaralho().getCartas().addFirst(monteCompra.compraCarta());
     }
 
-    public void jogarCarta(Jogador j, Carta c){
+    public void jogarCarta(Jogador j, Carta c, Carta cartaAnterior){
         j.jogarCarta(c);
         monteDescarte.addCartaNoInicio(c);
+    }
+
+    public boolean validarCarta(Carta c, Carta cAnterior){
+        return validacao.validarCarta(c,cAnterior);
     }
 
     public boolean jogadorGanhou(ArrayList<Jogador> jogadores){
