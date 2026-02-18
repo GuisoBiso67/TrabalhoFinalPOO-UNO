@@ -60,6 +60,16 @@ public class Controle {
         this.monteDescarte.recebeCarta1(cartaInicial);
     }
 
+    public void esvaziaMonteCompra(){
+        while(!monteCompra.getCartas().isEmpty()){
+            Carta c = this.acessaMonteCompra().getCartas().removeFirst();
+            this.acessaMonteDescarte().addCartaNoInicio(c);
+        }
+        System.out.println("Nro Monte Compras: " + this.acessaMonteCompra().getQuant());
+        System.out.println("Nro Monte Descarte: " + this.acessaMonteDescarte().getQuant());
+        System.out.println("Monte de Compra Esvaziado!");
+    }
+
     public void compraCartaSeguro(Jogador j){ // mudar esse nome dps, testar se funciona;
         if(monteCompra.getQuant() == 0){
             monteDescarte.reembaralhar(monteCompra);

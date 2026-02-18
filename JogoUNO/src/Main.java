@@ -17,16 +17,18 @@ class Main{
             numJogadores = scanner.nextInt();
         } while (numJogadores > 10 || numJogadores < 2);
 
-        int escolhaBaralho;
+        String escolhaBaralho;
         System.out.println("Qual tipo de baralho você vai usar?");
         System.out.println("1 - Uno Oficial");
         System.out.println("2 - Baralho Tradicional");
         do{
             System.out.println("-> : ");
-            escolhaBaralho = scanner.nextInt();
-        }while(escolhaBaralho != 1 && escolhaBaralho != 2);
+            escolhaBaralho = scanner.next();
+        }while(!escolhaBaralho.equals("1") && !escolhaBaralho.equals("2"));
 
-        if (escolhaBaralho == 1) {
+        int escolhaBaralhoInt = Integer.parseInt(escolhaBaralho);
+
+        if (escolhaBaralhoInt == 1) {
             baralho = new BaralhoOficial();
             baralho.criaBaralho();
             if (numJogadores >= 7) { // se o numero de jogadores for maior que 6, precisa de 2 baralhos;
@@ -44,14 +46,14 @@ class Main{
                 baralho.getCartas().addAll(baralho2.getCartas());
             }
         }
-        controle = new Controle(escolhaBaralho);
+        controle = new Controle(escolhaBaralhoInt);
         ArrayList<Jogador> jogadores = controle.getJogadores();
         System.out.println("Baralho gerado com sucesso");
 
 
         // INICIA JOGO;
         baralho.embaralhaBaralho();
-        controle.distribuirCartas(baralho, numJogadores, jogadores, escolhaBaralho);
+        controle.distribuirCartas(baralho, numJogadores, jogadores, escolhaBaralhoInt);
         //controle.criaMonteCompra(baralho);
         //controle.iniciaMonteDescarte(baralho.getCartas().getFirst());
 
@@ -99,6 +101,19 @@ class Main{
         System.out.println("------------------------------------------");
         System.out.println("------------------------------------------");
 
+        /*
+        controle.esvaziaMonteCompra();
+        controle.compraCartaSeguro(jogadores.getFirst());
+        System.out.println("QUANTIDADE MONTE DE COMPRAS: " + monteCompra.getQuant());
+        System.out.println("QUANTIDADE MONTE DE DESCARTE: " + monteDescarte.getQuant());
+        System.out.println("Total sistema: " +
+                (jogadores.getFirst().getBaralho().getQuant() +
+                        jogadores.getLast().getBaralho().getQuant() +
+                        monteCompra.getCartas().size() +
+                        monteDescarte.getCartas().size())
+        );
+         */
+
         System.out.println("Ultima carta jogada: " + monteDescarte.formatarNomeCarta(monteDescarte.getFirstCarta()));
 
         Jogador jogador;
@@ -116,20 +131,23 @@ class Main{
             }
             System.out.println(i + " - Comprar carta");
             int op = scanner.nextInt();
+            while((op > i) || (op < 0)){
+                System.out.println("Acao invalida! Escolha outra: ");
+                op = scanner.nextInt();
+            }
             if(op == i){
                 controle.compraCartaSeguro(jogador);
             }else{
-                while(!controle.validarCarta(jogador.getBaralho().getCartas().get(op), monteDescarte.getFirstCarta(), grupo)){
+                while(!(controle.validarCarta(jogador.getBaralho().getCartas().get(op), monteDescarte.getFirstCarta(), grupo))){
                     System.out.println("Carta invalida! Escolha outra: ");
                     op = scanner.nextInt();
                 }
                 if(jogador.getBaralho().getCartas().get(op).getGrupo().equals(Grupo.PR) || jogador.getBaralho().getCartas().get(op).getGrupo().equals(Grupo.VE)){
-                    grupo = controle.escolherCor(escolhaBaralho);
+                    grupo = controle.escolherCor(escolhaBaralhoInt);
                 }else{
                     grupo = null;
                 }
                 controle.jogarCarta(jogador, jogador.getBaralho().getCartas().get(op), monteDescarte.getFirstCarta());
-
             }
             System.out.println("------------------------------------------");
 
@@ -145,5 +163,6 @@ class Main{
 
         Jogador vencedor = controle.jogadorGanhouNome(jogadores);
         System.out.println("Vencedor: " + vencedor.getNome());
+
     }
 }

@@ -17,21 +17,19 @@ public class Descarte extends Monte {
         return this.getCartas().getFirst();
     }
 
-    public Descarte reembaralhar(Compra monteCompra){
-        Carta cartaTopo = this.getCartas().getFirst(); // salva ultima carta que foi jogada;
+    public void reembaralhar(Compra monteCompra){
+        Carta cartaTopo = this.getCartas().removeFirst(); // salva ultima carta que foi jogada;
         //monteCompra.getCartas().add(cartaTopo);
 
-        this.getCartas().removeFirst();
+        //this.getCartas().removeFirst();
         this.embaralhaBaralho(); // descarte foi embaralhado
 
-        for(Carta carta : this.getCartas()){
-            monteCompra.getCartas().add(carta); // constroi monte de compra
-            monteCompra.aumentaQuantCartas();
+        while(!this.getCartas().isEmpty()){
+            monteCompra.getCartas().add(this.getCartas().removeFirst());
         }
-        this.getCartas().clear(); // limpa arrayList do descarte
-        this.addCartaNoInicio(cartaTopo); // adiciona a ultima carta jogada
-        this.setQuant(1); // descarte tem só 1 carta;
 
-        return this;
+        this.addCartaNoInicio(cartaTopo); // adiciona a ultima carta jogada
+
+        //return this;
     }
 }
