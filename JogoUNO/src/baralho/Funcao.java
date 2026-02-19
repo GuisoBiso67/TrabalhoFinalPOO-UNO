@@ -32,7 +32,7 @@ public enum Funcao {
     MAIS_DOIS{
         @Override
         public void executar(Controle controle, Carta carta){
-            int proximo = controle.getIndice()+1;
+            int proximo = controle.retornaIndiceCorreto();
             controle.compraCartaSeguro(controle.getJogadores().get(proximo));
             controle.compraCartaSeguro(controle.getJogadores().get(proximo));
             System.out.println(controle.getJogadores().get(proximo).getNome() + " compra duas cartas e perde a vez!");
@@ -48,7 +48,7 @@ public enum Funcao {
     MAIS_QUATRO{ // *tem a msm função do curinga
         @Override
         public void executar(Controle controle, Carta carta){
-            int proximo = controle.getIndice()+1;
+            int proximo = controle.retornaIndiceCorreto();
             controle.compraCartaSeguro(controle.getJogadores().get(proximo));
             controle.compraCartaSeguro(controle.getJogadores().get(proximo));
             controle.compraCartaSeguro(controle.getJogadores().get(proximo));

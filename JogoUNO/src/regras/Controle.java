@@ -15,14 +15,33 @@ public class Controle {
     private int indiceAtual;
     private int direcao; // 1 = horario, -1 = anti-horario;
 
-    public Controle(int op){
-        if (op==1) baralho = new BaralhoOficial();
-        else baralho = new BaralhoTradicional();
+    public Controle(int op, int numJogadores){
+        if (op==1){
+            baralho = new BaralhoOficial();
+            baralho.criaBaralho();
+            if (numJogadores >= 7) { // se o numero de jogadores for maior que 6, precisa de 2 baralhos;
+                Baralho baralho2 = new BaralhoOficial();
+                baralho2.criaBaralho();
+                baralho.getCartas().addAll(baralho2.getCartas());
+            }
+        } else{
+            baralho = new BaralhoTradicional();
+            baralho.criaBaralho();
+            if (numJogadores >= 7) { // se o numero de jogadores for maior que 6, precisa de 2 baralhos;
+                Baralho baralho2 = new BaralhoTradicional();
+                baralho2.criaBaralho();
+                baralho.getCartas().addAll(baralho2.getCartas());
+            }
+        }
         jogadores = new ArrayList<>();
         monteCompra = new Compra();
         monteDescarte = new Descarte();
         indiceAtual = 0;
         direcao = 1;
+    }
+
+    public Baralho getBaralho(){
+        return baralho;
     }
 
     public void distribuirCartas(Baralho b, int n, ArrayList<Jogador> jogadores, int tipoBaralho){ // n = numero de jogadores;
@@ -143,6 +162,11 @@ public class Controle {
     public void updateIndice(){
         if (indiceAtual == jogadores.size()-1) setIndice(0);
         else indiceAtual++;
+    }
+
+    public int retornaIndiceCorreto(){ // funcção para +4 e +2
+        if (indiceAtual == jogadores.size()-1) return 0;
+        else return indiceAtual+1;
     }
 
     public ArrayList<Jogador> getJogadores(){

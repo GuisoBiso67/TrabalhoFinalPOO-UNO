@@ -47,7 +47,7 @@ public class BaralhoTradicional extends Baralho{
 
     public String getFuncao(Carta c){
         return switch (c.getFuncao()){
-            case NUMERICA -> "numerica";
+            case NUMERICA -> "";
             case BLOQUEIO -> "bloqueio";
             case REVERSO -> "reverso";
             case MAIS_DOIS -> "+2";
