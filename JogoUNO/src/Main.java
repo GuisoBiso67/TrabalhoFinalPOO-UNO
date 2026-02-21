@@ -6,6 +6,9 @@ import java.util.*;
 
 class Main{
     public static void main(String[] args) {
+        InterfaceJogo interfaceJogo = new InterfaceJogo();
+        interfaceJogo.execucao();
+        /*
         Scanner scanner = new Scanner(System.in);
         //Baralho baralho = null;
         //ArrayList<Jogador> jogadores = new ArrayList<>();
@@ -28,6 +31,7 @@ class Main{
 
         int escolhaBaralhoInt = Integer.parseInt(escolhaBaralho);
 
+        */
         /*
         if (escolhaBaralhoInt == 1) {
             baralho = new BaralhoOficial();
@@ -49,6 +53,8 @@ class Main{
         }
 
          */
+
+        /*
         controle = new Controle(escolhaBaralhoInt, numJogadores);
         ArrayList<Jogador> jogadores = controle.getJogadores();
         System.out.println("Baralho gerado com sucesso");
@@ -71,6 +77,8 @@ class Main{
         System.out.println("------------------------------------------");
         System.out.println("------------------------------------------");
 
+         */
+
         /*
         for (Carta c : baralho.getCartas()) {
             System.out.println(baralho.formatarNomeCarta(c));
@@ -83,6 +91,7 @@ class Main{
         System.out.println("------------------------------------------");
         */
 
+        /*
         Compra monteCompra = controle.acessaMonteCompra();
         Descarte monteDescarte = controle.acessaMonteDescarte();
 
@@ -103,6 +112,7 @@ class Main{
         System.out.println("------------------------------------------");
         System.out.println("------------------------------------------");
         System.out.println("------------------------------------------");
+        */
 
         /*
         controle.esvaziaMonteCompra();
@@ -117,8 +127,9 @@ class Main{
         );
          */
 
-        System.out.println("Ultima carta jogada: " + monteDescarte.getFirstCarta().formatarNomeGeral(escolhaBaralhoInt));
+        //System.out.println("Ultima carta jogada: " + monteDescarte.getFirstCarta().formatarNomeGeral(escolhaBaralhoInt));
 
+        /*
         Jogador jogador;
         Grupo grupo = null;
 
@@ -174,6 +185,7 @@ class Main{
 
         Jogador vencedor = controle.jogadorGanhouNome(jogadores);
         System.out.println("Vencedor: " + vencedor.getNome());
+        */
 
     }
 }
