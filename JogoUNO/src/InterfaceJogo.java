@@ -11,9 +11,9 @@ public class InterfaceJogo {
     int opcao;
 
     public void execucao(){
-        this.exibirMenu();
-        opcao = this.escolhaMenu();
         do {
+            this.exibirMenu();
+            opcao = this.escolhaMenu();
             if(opcao == 1){
                 comecarJogo();
             }
@@ -40,6 +40,7 @@ public class InterfaceJogo {
         String numJogadores;
         System.out.println("Numero de Jogadores (2 a 10): ");
         do {
+            System.out.print(": ");
             numJogadores = input.next();
             //System.out.print("Opcao Invalida. Selecione outra!");
         } while (Integer.parseInt(numJogadores) > 10 || Integer.parseInt(numJogadores) < 2);
@@ -50,11 +51,11 @@ public class InterfaceJogo {
         String escolhaBaralho;
 
         System.out.println("---------------------------------------");
-        System.out.println("-> Qual tipo de baralho você quer usar?");
+        System.out.println("Qual tipo de baralho você quer usar?");
         System.out.println("1 - Uno Oficial");
         System.out.println("2 - Baralho Tradicional");
         do{
-            System.out.println("-> : ");
+            System.out.print(": ");
             escolhaBaralho = input.next();
         }while(!escolhaBaralho.equals("1") && !escolhaBaralho.equals("2"));
         System.out.println("---------------------------------------");
@@ -71,6 +72,7 @@ public class InterfaceJogo {
 
     private void informacoesBasicas(Controle controle, int tipoBaralho){
         String direcao;
+        System.out.println("---------------------------------------");
         if(controle.getDirecao() == 1){
             direcao = "HORARIO";
         }else{
@@ -78,7 +80,8 @@ public class InterfaceJogo {
         }
         System.out.println("Indice: " + controle.getIndice() + " | Direção: " + direcao);
         System.out.println("QUANTIDADE MONTE DE COMPRAS: " + controle.acessaMonteCompra().getQuant());
-        System.out.println("Ultima carta jogada: " + controle.acessaMonteDescarte().getFirstCarta().formatarNomeGeral(tipoBaralho));
+        System.out.println("ULTIMA CARTA JOGADA: " + controle.acessaMonteDescarte().getFirstCarta().formatarNomeGeral(tipoBaralho));
+        System.out.println("---------------------------------------");
     }
 
     private int imprimirCartas(Jogador j){
@@ -107,7 +110,6 @@ public class InterfaceJogo {
             }else{
                 g = null;
             }
-
             controle.jogarCarta(j, j.getBaralho().getCartas().get(op), controle.acessaMonteDescarte().getFirstCarta());
         }
 
@@ -121,8 +123,6 @@ public class InterfaceJogo {
             }else{
                 System.out.println("Naipe escolhido: " + g.formatar(tipoBaralho));
             }
-        }else{
-            System.out.println("Ultima carta jogada: " + controle.acessaMonteDescarte().getFirstCarta().formatarNomeGeral(tipoBaralho));
         }
     }
 
@@ -164,7 +164,9 @@ public class InterfaceJogo {
         }
 
         Jogador vencedor = controle.jogadorGanhouNome(jogadores);
-        System.out.println("Vencedor: " + vencedor.getNome());
+        System.out.println("---------------------------------------");
+        System.out.println("VENCEDOR: " + vencedor.getNome());
+        System.out.println("---------------------------------------");
     }
 
 }

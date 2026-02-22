@@ -40,8 +40,7 @@ public class BaralhoTradicional extends Baralho{
             case VALETE -> "valete";
             case DAMA -> "dama";
             case REI -> "rei";
-            case EXTRA1 -> "curingaPR";
-            case EXTRA2 -> "curingaVE";
+            case EXTRA1, EXTRA2 -> "curinga";
         };
     }
 

@@ -94,7 +94,7 @@ public class Controle {
             monteDescarte.reembaralhar(monteCompra);
         }
         j.getBaralho().getCartas().addFirst(monteCompra.compraCarta());
-        this.updateIndice();
+        //this.updateIndice();
     }
 
     public void jogarCarta(Jogador j, Carta c, Carta cartaAnterior){
@@ -156,17 +156,15 @@ public class Controle {
     public int getIndice(){
         return indiceAtual;
     }
+    /*
     public void setIndice(int novoIndice){
         this.indiceAtual = novoIndice;
     }
-    public void updateIndice(){
-        if (indiceAtual == jogadores.size()-1) setIndice(0);
-        else indiceAtual++;
-    }
+     */
 
-    public int retornaIndiceCorreto(){ // funcção para +4 e +2
-        if (indiceAtual == jogadores.size()-1) return 0;
-        else return indiceAtual+1;
+    public int getProximoIndice(int passos){
+        int tamanho = jogadores.size();
+        return (indiceAtual + direcao * passos + tamanho) % tamanho;
     }
 
     public ArrayList<Jogador> getJogadores(){
@@ -192,6 +190,6 @@ public class Controle {
 
     public void avancarTurno(int passos){
         int tamanho = jogadores.size();
-        indiceAtual = (indiceAtual + direcao * passos + tamanho) % tamanho;
+        this.indiceAtual = (this.indiceAtual + direcao * passos + tamanho) % tamanho;
     }
 }

@@ -23,6 +23,17 @@ public class Carta {
         return valor;
     }
 
+    public String formatarNomeFuncao(Funcao f){
+        return switch (f){
+            case NUMERICA -> "";
+            case BLOQUEIO -> "bloqueio";
+            case REVERSO -> "reverso";
+            case MAIS_DOIS -> "+2";
+            case CURINGA -> "curinga";
+            case MAIS_QUATRO -> "+4";
+        };
+    }
+
     public String formatarNomeValor(Valor v, int tipoBaralho){
         if(tipoBaralho == 1){
             return switch (valor) {
@@ -35,7 +46,7 @@ public class Carta {
                 default -> valor.toString().toLowerCase();
             };
         }else{
-            return valor.toString();
+            return valor.toString().toLowerCase();
         }
     }
 
@@ -64,7 +75,7 @@ public class Carta {
         if(tipoBaralho == 1){
             return this.formatarNomeValor(valor, tipoBaralho) + " " + this.formatarNomeGrupo(grupo, tipoBaralho);
         }else{
-            return this.formatarNomeValor(valor, tipoBaralho) + " " + this.formatarNomeGrupo(grupo, tipoBaralho) + " " + this.getFuncao().toString().toLowerCase();
+            return this.formatarNomeValor(valor, tipoBaralho) + " " + this.formatarNomeGrupo(grupo, tipoBaralho) + " " + this.formatarNomeFuncao(funcao);
         }
     }
 
