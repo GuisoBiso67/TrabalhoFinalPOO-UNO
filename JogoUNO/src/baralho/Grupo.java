@@ -1,6 +1,6 @@
 package baralho;
 
-// função desse é diferenciar as cores do naipe, dependendo da escolha do usuario;
+// função desse enum é diferenciar as cores/naipe, dependendo da escolha do usuario;
 public enum Grupo {
     // copas: red, ouros: yellow, paus: green, espadas: blue;
     // PR = curinga preto, VE = curinga vermelho;
@@ -11,6 +11,7 @@ public enum Grupo {
     PR,
     VE;
 
+    // método usada quando o jogador lança curinga ou +4, para exibir e escolher a cor para continuar;
     public String formatar(int tipo) {
         if (tipo == 1) {
             return switch (this) {

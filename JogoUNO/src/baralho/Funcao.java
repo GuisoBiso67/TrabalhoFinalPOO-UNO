@@ -2,6 +2,8 @@ package baralho;
 
 import regras.Controle;
 
+// enum de funções que também implementa o que cada carta deve fazer no jogo (método executar, que é usada na classe Carta);
+
 public enum Funcao {
     NUMERICA{
         @Override

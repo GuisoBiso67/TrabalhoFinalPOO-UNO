@@ -14,6 +14,7 @@ public class BaralhoOficial extends Baralho{
 
     ArrayList<Carta> baralho;
 
+    // métodos auxiliares para fazer a função formatarNomeCarta;
     public String getTipo(Carta c){
         return switch (c.getGrupo()) {
             case CR -> "vermelho";

@@ -7,12 +7,13 @@ public abstract class Baralho {
     private int quant = 0;
     private ArrayList<Carta> baralho;
 
-    public Baralho(){
+    public Baralho(){ // construtor de baralho é uma lista vazia de cartas;
         baralho = new ArrayList<Carta>();
     }
 
+    // método que cria o baralho;
     public void criaBaralho(){
-        // cria todas as cartas numericas, sem função especifica
+        // cria todas as cartas numericas, sem função especifica;
         for(Valor v : Valor.values() ){ // cria 10x4 = 40 cartas;
             if(!(v.equals(Valor.EXTRA1)) && !(v.equals(Valor.EXTRA2)) && !(v.equals(Valor.VALETE)) && !(v.equals(Valor.DAMA)) && !(v.equals(Valor.REI))){
                 for(Grupo g : Grupo.values()){
@@ -24,7 +25,7 @@ public abstract class Baralho {
             }
         }
 
-        // cria todas bloqueio, reverso e +2
+        // cria todas bloqueio, reverso e +2;
         for(Grupo g : Grupo.values() ){ // cria 4x3 = 12 cartas;
             if(!(g.equals(Grupo.PR)) && !(g.equals(Grupo.VE))){
                 for(Funcao f : Funcao.values() ){
@@ -61,16 +62,12 @@ public abstract class Baralho {
         }
     }
 
-    public ArrayList<Carta> getCartas(){
+    public ArrayList<Carta> getCartas(){ // retorna lista de cartas
         return baralho;
     }
 
     public int getQuant(){
         return baralho.size();
-    }
-
-    public void setQuant(int quant){
-        this.quant = quant;
     }
 
     public void aumentaQuantCartas(){
@@ -81,7 +78,7 @@ public abstract class Baralho {
         quant--;
     }
 
-    public String formatarNomeCarta(Carta c){
+    public String formatarNomeCarta(Carta c){ // método "base" para definir depois em Oficial e Tradicional;
         return "";
     }
 
@@ -89,11 +86,7 @@ public abstract class Baralho {
         Collections.shuffle(baralho);
     }
 
-    public void addCarta(Carta c){
+    public void addCarta(Carta c){ // adiciona carta no baralho
         baralho.add(c);
-    }
-
-    public void addCartaNoInicio(Carta c){
-        baralho.addFirst(c);
     }
 }

@@ -4,21 +4,19 @@ import baralho.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
-//import java.util.LinkedList;
 
 public class Monte {
     private int quant;
     private ArrayList<Carta> monte;
 
-    //protected LinkedList<Carta> cartas = new LinkedList<>();
-    //protected Baralho baralho;
-
+    // Monte é uma lista de cartas também;
     public Monte(){
         monte = new ArrayList<Carta>();
     }
 
     // ------------------------------------------------------------
 
+    // métodos básicos;
     public ArrayList<Carta> getCartas(){
         return monte;
     }
@@ -39,7 +37,7 @@ public class Monte {
         quant--;
     }
 
-    // melhorar isso depois;
+    // melhorar isso depois; no fim não usei;
     public String formatarNomeCarta(Carta c){
         return c.getValor().toString() + " " + c.getGrupo().toString() + " " +  c.getFuncao().toString();
     }

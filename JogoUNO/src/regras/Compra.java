@@ -2,12 +2,14 @@ package regras;
 
 import baralho.*;
 
+//
 public class Compra extends Monte {
 
     public Compra() {
         super();
     }
 
+    // método recebe o baralho que vai ser usado e monta o monte de compras
     public void recebeCartas(Baralho baralho){
         for(Carta c : baralho.getCartas()){
             this.addCarta(c);
@@ -15,6 +17,7 @@ public class Compra extends Monte {
         }
     }
 
+    // método para jogador comprar carta;
     public Carta compraCarta(){
         Carta cartaComprada = this.getCartas().getFirst();
         this.getCartas().removeFirst();

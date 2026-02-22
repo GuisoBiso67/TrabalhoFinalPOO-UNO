@@ -7,22 +7,25 @@ public class Carta {
     public Grupo grupo;
     public Funcao funcao;
     public Baralho baralho;
+
+    // carta é um conjunto de valor, grupo(cor/naipe) e função;
     public Carta(Grupo g, Valor v, Funcao f){
         this.valor = v;
         this.grupo = g;
         this.funcao = f;
     }
 
+    // retorna os enums;
     public Grupo getGrupo(){
         return grupo;
     }
-    public Funcao getFuncao(){
-        return funcao;
-    }
+    public Funcao getFuncao(){ return funcao; }
     public Valor getValor(){
         return valor;
     }
 
+
+    // métodos auxiliares para formatação em pontos específicos do jogo;
     public String formatarNomeFuncao(Funcao f){
         return switch (f){
             case NUMERICA -> "";
@@ -75,10 +78,12 @@ public class Carta {
         if(tipoBaralho == 1){
             return this.formatarNomeValor(valor, tipoBaralho) + " " + this.formatarNomeGrupo(grupo, tipoBaralho);
         }else{
+            // quando escolhe jogar com naipes, ele exibe a função também para auxiliar os jogadores
             return this.formatarNomeValor(valor, tipoBaralho) + " " + this.formatarNomeGrupo(grupo, tipoBaralho) + " " + this.formatarNomeFuncao(funcao);
         }
     }
 
+    // método que aplica o efeito da carta depois de jogada;
     public void aplicarEfeito(Controle controle){
         this.getFuncao().executar(controle, this);
     }
