@@ -81,7 +81,6 @@ O projeto está organizado em classes responsáveis por:
 ## Informações Acadêmicas
 
 -   Disciplina: Programação Orientada a Objetos\
--   Tipo: Trabalho Final\
 -   Linguagem: Java
 
 ------------------------------------------------------------------------
@@ -94,61 +93,87 @@ O projeto está organizado em classes responsáveis por:
 
 # English Version
 
-## Final Project -- Object-Oriented Programming
+# Final Project -- Object-Oriented Programming
 
-### UNO Game Implementation in Java
+## UNO Game in Java
 
-### Project Description
+## Project Description
 
-This project was developed as the final assignment for the
-**Object-Oriented Programming (OOP)** course.
+This project was developed as the final assignment for the **Object-Oriented Programming (OOP)** course.  
+The goal is to implement a **classic UNO game** using the fundamental concepts of object-oriented programming in Java.
 
-The goal was to implement a classic UNO card game using core OOP
-concepts in Java. The system simulates the main rules of the official
-game, including turn control, special card effects, and multiplayer
-support.
+The system simulates the main rules of the official game, including turn control, special card effects, and multi-player management.
 
-------------------------------------------------------------------------
+---
 
-### Academic Objectives
+## Academic Objectives
 
--   Encapsulation\
--   Abstraction\
--   Enumerations (`enum`) with behavior\
--   Polymorphism\
--   Collections manipulation\
--   Class organization and responsibility separation\
--   Game flow control
+The development of this project aimed to apply the following concepts in practice:
 
-------------------------------------------------------------------------
+- Encapsulation  
+- Abstraction  
+- Enumerations (`enum`) with behavior  
+- Polymorphism  
+- Collection manipulation  
+- Multi-class organization  
+- Separation of responsibilities  
+- Flow control and game logic  
 
-### Implemented Features
+---
 
--   ✔ Number cards\
--   ✔ +2 cards\
--   ✔ +4 cards\
--   ✔ Reverse card\
--   ✔ Skip card\
--   ✔ Direction control\
--   ✔ Automatic card draw\
--   ✔ Discard pile reshuffling\
--   ✔ Multiplayer support\
--   ✔ Correct turn management
+## Implemented Features
 
-------------------------------------------------------------------------
+- ✔ Number cards  
+- ✔ +2 cards  
+- ✔ +4 cards  
+- ✔ Reverse card  
+- ✔ Skip card  
+- ✔ Game direction change  
+- ✔ Automatic card drawing when needed  
+- ✔ Discard pile reshuffling  
+- ✔ Support for multiple players  
+- ✔ Correct turn control  
 
-### Technologies Used
+---
 
--   **Java**
--   Object-Oriented Programming
--   Standard Java Collections Framework
+## Technologies Used
 
-------------------------------------------------------------------------
+- **Java**
+- Object-Oriented Programming
+- Standard library data structures
 
-### ▶ How to Run
+---
 
-``` bash
+## ▶ How to Run
+
+```bash
 git clone https://github.com/GuisoBiso67/TrabalhoFinalPOO-UNO.git
 ```
 
-Open the project in a Java IDE and run the main class to start the game.
+Open the project in a Java IDE and run the main class responsible for starting the game.
+
+---
+
+## Project Structure
+
+The project is organized into classes responsible for:
+
+- General game control  
+- Card representation  
+- Card type enumeration with specific behavior  
+- Player management  
+- Turn and direction control  
+- Deck and discard pile manipulation  
+
+---
+
+## Academic Information
+
+- Course: Object-Oriented Programming  
+- Language: Java  
+
+---
+
+## 👤 Author
+
+**Guilherme Cotrim**
