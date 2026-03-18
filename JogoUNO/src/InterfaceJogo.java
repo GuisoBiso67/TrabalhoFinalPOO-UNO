@@ -99,17 +99,21 @@ public class InterfaceJogo {
     private Grupo compraCarta(Controle controle, Jogador j, int tipoBaralho, int op, Grupo g, int i){
         if(op == i){
             controle.compraCartaSeguro(j);
+            controle.avancarTurno(1);
         }else{
+            // verifica se a carta escolhida eh valida;
             while(!(controle.validarCarta(j.getBaralho().getCartas().get(op), controle.acessaMonteDescarte().getFirstCarta(), g))){
                 System.out.println("Carta invalida! Escolha outra: ");
                 op = input.nextInt();
             }
 
+            // caso seja jogado +4 ou curinga, escolhe uma cor;
             if(j.getBaralho().getCartas().get(op).getGrupo().equals(Grupo.PR) || j.getBaralho().getCartas().get(op).getGrupo().equals(Grupo.VE)){
                 g = controle.escolherCor(tipoBaralho);
             }else{
-                g = null;
+                g = null; // se nao tem que escolher cor, g fica null;
             }
+            // no fim ele joga a carta;
             controle.jogarCarta(j, j.getBaralho().getCartas().get(op), controle.acessaMonteDescarte().getFirstCarta());
         }
 
@@ -127,12 +131,12 @@ public class InterfaceJogo {
     }
 
     private void comecarJogo(){
-        int numJogadores = this.numJogadores();
-        int tipoBaralho = this.escolhaBaralho();
-        ArrayList<Jogador> jogadores =  gerarBaralho_e_Jogadores(tipoBaralho, numJogadores);
+        int numJogadores = this.numJogadores(); // escolhe num de jogadores
+        int tipoBaralho = this.escolhaBaralho(); // escolhe tipo de baralho
+        ArrayList<Jogador> jogadores =  gerarBaralho_e_Jogadores(tipoBaralho, numJogadores); // cria lista de jogadores;
 
-        controle.getBaralho().embaralhaBaralho();
-        controle.distribuirCartas(controle.getBaralho(), numJogadores, jogadores, tipoBaralho);
+        controle.getBaralho().embaralhaBaralho(); // embaralha todo o baralhos
+        controle.distribuirCartas(controle.getBaralho(), numJogadores, jogadores, tipoBaralho); // distribui baralho e cria monte de compra;
 
         jogando(controle, numJogadores, tipoBaralho, jogadores);
     }
@@ -143,11 +147,11 @@ public class InterfaceJogo {
         Jogador jogador;
         Grupo grupo = null;
 
-        while(!controle.jogadorGanhou(jogadores)){
+        while(!controle.jogadorGanhou(jogadores)){ // enquanto nenhum jogador tiver zero cartas;
 
-            informacoesBasicas(controle, tipoBaralho); // exibe direção da roda e ultima carta jogada;
+            informacoesBasicas(controle, tipoBaralho); // exibe direção da "roda" e última carta jogada;
 
-            jogador = jogadores.get(controle.getIndice());
+            jogador = jogadores.get(controle.getIndice()); // determina quem vai jogar;
 
             int i = imprimirCartas(jogador);
             int op = input.nextInt();
@@ -160,7 +164,7 @@ public class InterfaceJogo {
 
             System.out.println("------------------------------------------");
 
-            retornaGrupo(grupo, tipoBaralho);
+            retornaGrupo(grupo, tipoBaralho); // só funciona se grupo != null;
         }
 
         Jogador vencedor = controle.jogadorGanhouNome(jogadores);

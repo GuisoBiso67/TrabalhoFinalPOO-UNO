@@ -98,7 +98,6 @@ public class Controle {
             monteDescarte.reembaralhar(monteCompra);
         }
         j.getBaralho().getCartas().addFirst(monteCompra.compraCarta());
-        //this.updateIndice();
     }
 
     // método que joga a carta, aplica efeito e coloca ela no monte de descarte;
@@ -166,7 +165,7 @@ public class Controle {
         return indiceAtual;
     }
 
-    // método que calcula de quem é a vez;
+    // método que calcula de quem é a vez; usada para aplicar penalidade +2 e +4 das cartas;
     public int getProximoIndice(int passos){
         int tamanho = jogadores.size();
         return (indiceAtual + direcao * passos + tamanho) % tamanho;
@@ -199,5 +198,8 @@ public class Controle {
     public void avancarTurno(int passos){
         int tamanho = jogadores.size();
         this.indiceAtual = (this.indiceAtual + direcao * passos + tamanho) % tamanho;
+        // "this.indiceAtual + direcao * passos" = calcula para onde você quer ir;
+        // "+ tamanho" = garante que nunca vai ser negativo;
+        // "% tamanho" = garante que não vai sair um indice maior que a quantidade de jogadores;
     }
 }
